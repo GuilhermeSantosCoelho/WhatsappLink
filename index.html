@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel = "folha de estilo" href = "https://fonts.googleapis.com/css?family=Tangerine" >
     <script src="js/jquery.js"></script>
+    <script src="js/jquery.mask.js"></script>
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>  
@@ -14,7 +15,7 @@
         <h1>Crie seu link de Whatsapp</h1><br>
         <label>
             <h3>Número do Whatsapp</h3>
-            <input type="number" id="numero" placeholder="5531000000000"/> <!-- Número do telefone Whatsapp -->
+            <input type="text" class="telefone" id="numero" placeholder="(00) 00000-0000"/> <!-- Número do telefone Whatsapp -->
         </label>
         <label>
             <h3>Texto da mensagem</h3>
@@ -27,6 +28,19 @@
     </div>
 
     <script type="text/javascript">
+
+        $('.telefone').keyup(function(){
+            if(this.value.length < 14){ //Definindo máscara para o telefone com 8 digitos 0000-0000
+                $('.telefone').mask('(00) 0000-0000');
+            }
+            this.selectionStart = this.selectionEnd = this.value.length; //Colocando o cursor sempre no final do input
+        });
+
+        $('.telefone').keydown(function(){
+            if(this.value.length == 14){ //Definindo máscara para o telefone caso tenha 9 dígitos 00000-0000
+                $('.telefone').mask('(00) 00000-0000');
+            }
+        });
 
         $("#criar").click(function(){ //Função de click do botão
             if($("#numero").val().length < 12){ //Verificando se o tamanho do número é valido
