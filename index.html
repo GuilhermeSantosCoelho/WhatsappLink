@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Crie seu link Whatsapp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "folha de estilo" href = "https://fonts.googleapis.com/css?family=Tangerine" >
+    <script src="js/jquery.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>  
+    <div id="dados"> 
+        <img src="images/logo.png"/><br><br>
+        <h1>Crie seu link de Whatsapp</h1><br>
+        <label>
+            <h3>Número do Whatsapp</h3>
+            <input type="number" id="numero" placeholder="5531000000000"/> <!-- Número do telefone Whatsapp -->
+        </label>
+        <label>
+            <h3>Texto da mensagem</h3>
+            <input type="text" id="texto"> <!-- Texto da mensagem -->
+        </label><br><br>
+        <button id="criar">Criar</button> <br><br><br><br> <!-- Botão para gerar o link -->
+        <div id="div_resposta">
+            <a id="resposta"></a> <!-- Retorno do link -->
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        $("#criar").click(function(){ //Função de click do botão
+            if($("#numero").val().length < 12){ //Verificando se o tamanho do número é valido
+                alert("O número deve possuir pelo menos 12 caracteres!");
+            }else{
+                $.ajax({ //Requisição ajax para a função PHP
+                    type: "POST", //Método de requisição
+                    url: "funcao.php", //Local do arquivo PHP 
+                    data: "numero="+$("#numero").val()+"&texto="+$("#texto").val(), //Dados que serão enviados via POST
+                    success: function(msg){ //Função caso a requisição funcione
+                        $("#resposta").show();
+                        $("#resposta").attr("href",msg); //Atribuindo o referenciamento da tag "<a>" para o link
+                        $("#resposta").html(msg); //Exibindo o link na página
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) { //Função caso ocorra algum erro
+                        alert("Ocorreu algum erro!"); 
+                    }
+                });
+            }
+        });
+
+    </script>
+    
+</body>
+</html>
