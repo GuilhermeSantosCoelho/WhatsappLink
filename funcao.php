@@ -9,8 +9,8 @@
 
     $url = ("https://api.whatsapp.com/send?phone=55".$numero_novo."%26text=".$texto_novo); //Gera a URL da API do Whatsapp
 
-    $login = "skazybad"; //Seu login do Bit.ly
-    $api_key = "R_1841a82d7daa4a00b55c5cb9eef4355f"; //Seu token de acesso do Bit.ly
+    $login = "seu_login"; //Seu login do Bit.ly
+    $api_key = "sua_chave_de_api"; //Seu token de acesso do Bit.ly
 
     $ch = curl_init("http://api.bitly.com/v3/shorten?login=".$login."&apiKey=".$api_key."&longUrl=".$url);//Gera a URL da API do Bit.ly
 
