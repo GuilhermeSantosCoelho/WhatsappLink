@@ -11,8 +11,8 @@
 </head>
 <body>  
     <div id="dados"> 
-        <img src="images/logo.png"/><br><br>
-        <h1>Crie seu link de Whatsapp</h1><br>
+        <img src="images/logo.png"/><br>
+        <h2>Crie seu link de Whatsapp</h2>
         <label>
             <h3>Número do Whatsapp</h3>
             <input type="text" class="telefone" id="numero" placeholder="(00) 00000-0000"/> <!-- Número do telefone Whatsapp -->
@@ -43,8 +43,8 @@
         });
 
         $("#criar").click(function(){ //Função de click do botão
-            if($("#numero").val().length < 12){ //Verificando se o tamanho do número é valido
-                alert("O número deve possuir pelo menos 12 caracteres!");
+            if($("#numero").val().length < 14){ //Verificando se o tamanho do número é valido
+                alert("Número de telefone inválido!");
             }else{
                 $.ajax({ //Requisição ajax para a função PHP
                     type: "POST", //Método de requisição
